@@ -16,11 +16,15 @@ public class Item {
     @Min(0)
     private int price;
 
-    public Item(int id, String name, String description, int price) {
+    @NotNull
+    private String image;
+
+    public Item(int id, String name, String description, int price, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.image = image;
     }
 
     public int getId() {
@@ -53,5 +57,13 @@ public class Item {
 
     public void setPrice(@Valid @NotNull int price2) {
         this.price = price2;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

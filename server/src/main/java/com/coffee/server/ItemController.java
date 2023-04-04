@@ -19,11 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class ItemController {
-    private List<Item> items = new ArrayList<>(Arrays.asList(
-            new Item(1, "Item 1", "Description 1", 100),
-            new Item(2, "Item 2", "Description 2", 200),
-            new Item(3, "Item 3", "Description 3", 300)));
-
+    
+    private List<Item> items = DummyData.items;
+    
     @GetMapping("/items")
     @ResponseBody
     public List<Item> getItems() {
@@ -53,6 +51,7 @@ public class ItemController {
         existingItem.setName(updatedItem.getName());
         existingItem.setDescription(updatedItem.getDescription());
         existingItem.setPrice(updatedItem.getPrice());
+        existingItem.setImage(updatedItem.getImage());
         return ResponseEntity.ok(existingItem);
     }
 
@@ -66,7 +65,5 @@ public class ItemController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    
 
 }
