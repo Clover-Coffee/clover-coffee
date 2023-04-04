@@ -1,7 +1,5 @@
 package com.coffee.server;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ItemController {
     
     private List<Item> items = DummyData.items;
-    
+
     @GetMapping("/items")
     @ResponseBody
     public List<Item> getItems() {
