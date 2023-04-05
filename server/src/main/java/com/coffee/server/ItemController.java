@@ -1,5 +1,6 @@
 package com.coffee.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,10 +30,16 @@ public class ItemController {
         return items;
     }
 
-    @GetMapping("/items/{id}")
+    @GetMapping("/items/{brand}")
     @ResponseBody
-    public Item getItemById(@PathVariable int id) {
-        return items.stream().filter(item -> item.getId() == id).findFirst().orElse(null);
+    public List<Item> getItemsByBrand(@PathVariable String brand) {
+        List<Item> matchingItems = new ArrayList<>();
+        for (Item item : items) {
+            if (item.getBrand().equals(brand)) {
+                matchingItems.add(item);
+            }
+        }
+        return matchingItems;
     }
 
     @PostMapping("/items")
