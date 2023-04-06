@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class ItemController {
-    
+
     private List<Item> items = DummyData.items;
 
     @GetMapping("/items")
@@ -30,17 +30,12 @@ public class ItemController {
         return items;
     }
 
-    @GetMapping("/items/{brand}")
+    @GetMapping("/items/{id}")
     @ResponseBody
-    public List<Item> getItemsByBrand(@PathVariable String brand) {
-        List<Item> matchingItems = new ArrayList<>();
-        for (Item item : items) {
-            if (item.getBrand().equals(brand)) {
-                matchingItems.add(item);
-            }
-        }
-        return matchingItems;
+    public Item getItemById(@PathVariable int id) {
+        return items.stream().filter(item -> item.getId() == id).findFirst().orElse(null);
     }
+
 
     @PostMapping("/items")
     public ResponseEntity<Item> addItem(@Valid @RequestBody Item newItem) {
