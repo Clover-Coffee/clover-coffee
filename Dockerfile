@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-slim
 
-WORKDIR /server
+WORKDIR /
 
 COPY target/server-0.0.1-SNAPSHOT.jar clover-coffee.jar
 
